@@ -1,0 +1,55 @@
+\begin{theindex}
+
+  \item {\+\_\+\+\_\+init\+\_\+\+\_\+}
+    \subitem {Minesweeper\+::\+Board}, 4
+    \subitem {Minesweeper\+::\+Cell}, 7
+
+  \indexspace
+
+  \item {add\+Flag}
+    \subitem {Minesweeper\+::\+Board}, 4
+
+  \indexspace
+
+  \item {check\+\_\+game}
+    \subitem {Minesweeper\+::\+Board}, 4
+
+  \indexspace
+
+  \item {Minesweeper.\+Board}, 3
+  \item {Minesweeper.\+Cell}, 6
+  \item {Minesweeper\+::\+Board}
+    \subitem {\+\_\+\+\_\+init\+\_\+\+\_\+}, 4
+    \subitem {add\+Flag}, 4
+    \subitem {check\+\_\+game}, 4
+    \subitem {on\+Object\+Left\+Click}, 4
+    \subitem {on\+Object\+Right\+Click}, 5
+    \subitem {place\+\_\+bombs}, 5
+    \subitem {reveal}, 5
+    \subitem {show\+\_\+board}, 6
+  \item {Minesweeper\+::\+Cell}
+    \subitem {\+\_\+\+\_\+init\+\_\+\+\_\+}, 7
+
+  \indexspace
+
+  \item {on\+Object\+Left\+Click}
+    \subitem {Minesweeper\+::\+Board}, 4
+  \item {on\+Object\+Right\+Click}
+    \subitem {Minesweeper\+::\+Board}, 5
+
+  \indexspace
+
+  \item {place\+\_\+bombs}
+    \subitem {Minesweeper\+::\+Board}, 5
+
+  \indexspace
+
+  \item {reveal}
+    \subitem {Minesweeper\+::\+Board}, 5
+
+  \indexspace
+
+  \item {show\+\_\+board}
+    \subitem {Minesweeper\+::\+Board}, 6
+
+\end{theindex}

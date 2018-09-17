@@ -122,7 +122,6 @@ class Board:
 			return
 		if self.board[x][y].bomb:
 			print("GAMEOVER")
-			self.board[x][y].covered = False
 			self.canv.delete("all")
 			self.canv.create_text(24*self.size_x//2, 24*self.size_y//2, fill="red",font="Times 20 italic bold", text="GAMEOVER")
 		else:

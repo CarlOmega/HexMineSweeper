@@ -1,0 +1,176 @@
+\hypertarget{class_minesweeper_1_1_board}{}\section{Minesweeper.\+Board Class Reference}
+\label{class_minesweeper_1_1_board}\index{Minesweeper.\+Board@{Minesweeper.\+Board}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{class_minesweeper_1_1_board_a73f4db1b86dab753125ed0a6ca232667}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, root, size\+\_\+x, size\+\_\+y, bombs)
+\item 
+def \mbox{\hyperlink{class_minesweeper_1_1_board_a7e283de1291a4ed985a6099dcbbd4962}{on\+Object\+Left\+Click}} (self, event)
+\item 
+def \mbox{\hyperlink{class_minesweeper_1_1_board_abce9d7c9117d2e09520dcb5f39642182}{on\+Object\+Right\+Click}} (self, event)
+\item 
+def \mbox{\hyperlink{class_minesweeper_1_1_board_ac5b393b15aedf45687cc5ed242fd3304}{check\+\_\+game}} (self)
+\item 
+def \mbox{\hyperlink{class_minesweeper_1_1_board_a98ef006d12ffc5b634a387277b2d4c10}{place\+\_\+bombs}} (self, bombs)
+\item 
+def \mbox{\hyperlink{class_minesweeper_1_1_board_a5a647633eb873455d51ee3fabde9a07a}{add\+Flag}} (self, x, y)
+\item 
+def \mbox{\hyperlink{class_minesweeper_1_1_board_aeb82e108501b60f530240d95e7de3ef8}{reveal}} (self, x, y)
+\item 
+def \mbox{\hyperlink{class_minesweeper_1_1_board_a90957ea377719961be1ab1e7a407e009}{show\+\_\+board}} (self)
+\item 
+\mbox{\Hypertarget{class_minesweeper_1_1_board_a80836e2d3c645b3982a57f2eb5f69d98}\label{class_minesweeper_1_1_board_a80836e2d3c645b3982a57f2eb5f69d98}} 
+def {\bfseries \+\_\+\+\_\+str\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_minesweeper_1_1_board_a366959f32b8b98e5140a35371f9154ad}\label{class_minesweeper_1_1_board_a366959f32b8b98e5140a35371f9154ad}} 
+{\bfseries canv}
+\item 
+\mbox{\Hypertarget{class_minesweeper_1_1_board_ad34610f9c6be24a38171a29d227065c2}\label{class_minesweeper_1_1_board_ad34610f9c6be24a38171a29d227065c2}} 
+{\bfseries size\+\_\+x}
+\item 
+\mbox{\Hypertarget{class_minesweeper_1_1_board_ab322dcad199a0b8801d2eb89aa20713c}\label{class_minesweeper_1_1_board_ab322dcad199a0b8801d2eb89aa20713c}} 
+{\bfseries size\+\_\+y}
+\item 
+\mbox{\Hypertarget{class_minesweeper_1_1_board_a387d7a42ca49ea81745093f11a5cc092}\label{class_minesweeper_1_1_board_a387d7a42ca49ea81745093f11a5cc092}} 
+{\bfseries flag\+\_\+count}
+\item 
+\mbox{\Hypertarget{class_minesweeper_1_1_board_aa75e13e4bd8f70112dfff5dd9863ca77}\label{class_minesweeper_1_1_board_aa75e13e4bd8f70112dfff5dd9863ca77}} 
+{\bfseries board}
+\item 
+\mbox{\Hypertarget{class_minesweeper_1_1_board_a84a33014cde1e1fbc00f3e9106c011f8}\label{class_minesweeper_1_1_board_a84a33014cde1e1fbc00f3e9106c011f8}} 
+{\bfseries bombs}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyVerb}Board stores references to all the Cells and has functions to play the game.
+
+   Attributes:
+   canv (Canvas): The canvas the board should be drawn onto.
+   size_x (int): The size of how many cells there should be in a column.
+   size_y (int): The size of how many cells there should be in a row.
+   flag_count (int): How many flags are on the board.
+   board (Cell[][]): The 2D array to store the cells.
+   bombs ((int, int)[]): x and y coordinates of the bombs locations.\end{DoxyVerb}
+ 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_minesweeper_1_1_board_a73f4db1b86dab753125ed0a6ca232667}\label{class_minesweeper_1_1_board_a73f4db1b86dab753125ed0a6ca232667}} 
+\index{Minesweeper\+::\+Board@{Minesweeper\+::\+Board}!\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}!Minesweeper\+::\+Board@{Minesweeper\+::\+Board}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+init\+\_\+\+\_\+()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def Minesweeper.\+Board.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{root,  }\item[{}]{size\+\_\+x,  }\item[{}]{size\+\_\+y,  }\item[{}]{bombs }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Board setup.
+
+This setup just creates the board then sets random cells to contain bombs.
+
+Args:
+    root (Panel): Where the Canvas should be created.
+    size_x (int): The size of how many cells there should be in a column.
+    size_y (int): The size of how many cells there should be in a row.
+    bombs (int): Amount of bombs to be placed.\end{DoxyVerb}
+ 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_minesweeper_1_1_board_a5a647633eb873455d51ee3fabde9a07a}\label{class_minesweeper_1_1_board_a5a647633eb873455d51ee3fabde9a07a}} 
+\index{Minesweeper\+::\+Board@{Minesweeper\+::\+Board}!add\+Flag@{add\+Flag}}
+\index{add\+Flag@{add\+Flag}!Minesweeper\+::\+Board@{Minesweeper\+::\+Board}}
+\subsubsection{\texorpdfstring{add\+Flag()}{addFlag()}}
+{\footnotesize\ttfamily def Minesweeper.\+Board.\+add\+Flag (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Adds a flag to the relevant Cell.
+
+Adds a flag to the cell then updates the drawing, after then checks
+gamestate to see if the user won.
+
+Args:
+    x (int): x coordinate of Cell targeted.
+    y (int): y coordinate of Cell targeted.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_minesweeper_1_1_board_ac5b393b15aedf45687cc5ed242fd3304}\label{class_minesweeper_1_1_board_ac5b393b15aedf45687cc5ed242fd3304}} 
+\index{Minesweeper\+::\+Board@{Minesweeper\+::\+Board}!check\+\_\+game@{check\+\_\+game}}
+\index{check\+\_\+game@{check\+\_\+game}!Minesweeper\+::\+Board@{Minesweeper\+::\+Board}}
+\subsubsection{\texorpdfstring{check\+\_\+game()}{check\_game()}}
+{\footnotesize\ttfamily def Minesweeper.\+Board.\+check\+\_\+game (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Checks if game state is complete.
+
+Checks list of bombs to see if they have been flagged, and also checks
+there isnt any extra flags.
+
+Returns:
+    True if complete, False otherwise.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_minesweeper_1_1_board_a7e283de1291a4ed985a6099dcbbd4962}\label{class_minesweeper_1_1_board_a7e283de1291a4ed985a6099dcbbd4962}} 
+\index{Minesweeper\+::\+Board@{Minesweeper\+::\+Board}!on\+Object\+Left\+Click@{on\+Object\+Left\+Click}}
+\index{on\+Object\+Left\+Click@{on\+Object\+Left\+Click}!Minesweeper\+::\+Board@{Minesweeper\+::\+Board}}
+\subsubsection{\texorpdfstring{on\+Object\+Left\+Click()}{onObjectLeftClick()}}
+{\footnotesize\ttfamily def Minesweeper.\+Board.\+on\+Object\+Left\+Click (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{event }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Left click event onto a cell.
+
+Handles the event of clicking onto a cell.
+
+Args:
+    event (Event): Details of the event that triggered.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_minesweeper_1_1_board_abce9d7c9117d2e09520dcb5f39642182}\label{class_minesweeper_1_1_board_abce9d7c9117d2e09520dcb5f39642182}} 
+\index{Minesweeper\+::\+Board@{Minesweeper\+::\+Board}!on\+Object\+Right\+Click@{on\+Object\+Right\+Click}}
+\index{on\+Object\+Right\+Click@{on\+Object\+Right\+Click}!Minesweeper\+::\+Board@{Minesweeper\+::\+Board}}
+\subsubsection{\texorpdfstring{on\+Object\+Right\+Click()}{onObjectRightClick()}}
+{\footnotesize\ttfamily def Minesweeper.\+Board.\+on\+Object\+Right\+Click (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{event }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Right click event onto a cell.
+
+Handles the event of right clicking onto a cell.
+
+Args:
+    event (Event): Details of the event that triggered.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_minesweeper_1_1_board_a98ef006d12ffc5b634a387277b2d4c10}\label{class_minesweeper_1_1_board_a98ef006d12ffc5b634a387277b2d4c10}} 
+\index{Minesweeper\+::\+Board@{Minesweeper\+::\+Board}!place\+\_\+bombs@{place\+\_\+bombs}}
+\index{place\+\_\+bombs@{place\+\_\+bombs}!Minesweeper\+::\+Board@{Minesweeper\+::\+Board}}
+\subsubsection{\texorpdfstring{place\+\_\+bombs()}{place\_bombs()}}
+{\footnotesize\ttfamily def Minesweeper.\+Board.\+place\+\_\+bombs (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{bombs }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Places bombs on random cells.
+
+Randomly picks new spots to place bombs.
+
+Args:
+    bombs (int): amount of bombs to place
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_minesweeper_1_1_board_aeb82e108501b60f530240d95e7de3ef8}\label{class_minesweeper_1_1_board_aeb82e108501b60f530240d95e7de3ef8}} 
+\index{Minesweeper\+::\+Board@{Minesweeper\+::\+Board}!reveal@{reveal}}
+\index{reveal@{reveal}!Minesweeper\+::\+Board@{Minesweeper\+::\+Board}}
+\subsubsection{\texorpdfstring{reveal()}{reveal()}}
+{\footnotesize\ttfamily def Minesweeper.\+Board.\+reveal (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Recursive method to reveal Cells.
+
+Recursively reaveals a cell then if that cell has 0 neighbouring bombs
+it calls the Recursive method on each neighbour that isnt revealed.
+
+Args:
+    x (int): x coordinate of Cell to be revealed.
+    y (int): y coordinate of Cell to be revealed.\end{DoxyVerb}
+ \mbox{\Hypertarget{class_minesweeper_1_1_board_a90957ea377719961be1ab1e7a407e009}\label{class_minesweeper_1_1_board_a90957ea377719961be1ab1e7a407e009}} 
+\index{Minesweeper\+::\+Board@{Minesweeper\+::\+Board}!show\+\_\+board@{show\+\_\+board}}
+\index{show\+\_\+board@{show\+\_\+board}!Minesweeper\+::\+Board@{Minesweeper\+::\+Board}}
+\subsubsection{\texorpdfstring{show\+\_\+board()}{show\_board()}}
+{\footnotesize\ttfamily def Minesweeper.\+Board.\+show\+\_\+board (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Shows board state for debugging.
+
+Returns:
+    output (str): Board view.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Minesweeper.\+py\end{DoxyCompactItemize}

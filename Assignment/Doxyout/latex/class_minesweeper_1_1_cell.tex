@@ -1,0 +1,76 @@
+\hypertarget{class_minesweeper_1_1_cell}{}\section{Minesweeper.\+Cell Class Reference}
+\label{class_minesweeper_1_1_cell}\index{Minesweeper.\+Cell@{Minesweeper.\+Cell}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{class_minesweeper_1_1_cell_a90721693b3d271396e733f3ca07047bb}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, canv, x, y)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_minesweeper_1_1_cell_a000d851a541610c56ccf0349ddf5f776}\label{class_minesweeper_1_1_cell_a000d851a541610c56ccf0349ddf5f776}} 
+{\bfseries bomb}
+\item 
+\mbox{\Hypertarget{class_minesweeper_1_1_cell_a653576bdebef499c33f4524a7ee600a7}\label{class_minesweeper_1_1_cell_a653576bdebef499c33f4524a7ee600a7}} 
+{\bfseries covered}
+\item 
+\mbox{\Hypertarget{class_minesweeper_1_1_cell_a2e33a55c655454ce377782ded157b664}\label{class_minesweeper_1_1_cell_a2e33a55c655454ce377782ded157b664}} 
+{\bfseries flag}
+\item 
+\mbox{\Hypertarget{class_minesweeper_1_1_cell_a82e01dd86aa369154851a54ee7222164}\label{class_minesweeper_1_1_cell_a82e01dd86aa369154851a54ee7222164}} 
+{\bfseries colour}
+\item 
+\mbox{\Hypertarget{class_minesweeper_1_1_cell_af3854ccbd0a2ca953b45655a4360a615}\label{class_minesweeper_1_1_cell_af3854ccbd0a2ca953b45655a4360a615}} 
+{\bfseries number}
+\item 
+\mbox{\Hypertarget{class_minesweeper_1_1_cell_a5c5d302cd2b3122697b640050f972546}\label{class_minesweeper_1_1_cell_a5c5d302cd2b3122697b640050f972546}} 
+{\bfseries x}
+\item 
+\mbox{\Hypertarget{class_minesweeper_1_1_cell_a3830d10cca0068e628c9d827b83471eb}\label{class_minesweeper_1_1_cell_a3830d10cca0068e628c9d827b83471eb}} 
+{\bfseries y}
+\item 
+\mbox{\Hypertarget{class_minesweeper_1_1_cell_ac3832775810d6450566a2b42e9bbbf51}\label{class_minesweeper_1_1_cell_ac3832775810d6450566a2b42e9bbbf51}} 
+{\bfseries rec}
+\item 
+\mbox{\Hypertarget{class_minesweeper_1_1_cell_ae5f9fce7697c32148670687c1c5de8aa}\label{class_minesweeper_1_1_cell_ae5f9fce7697c32148670687c1c5de8aa}} 
+{\bfseries text}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyVerb}Cell stores the relevant information about each cell tile.
+
+   Attributes:
+   bomb (bool): Stores if the cell contains a bomb.
+   covered (bool): Stores if the cell if revealed or covered from user.
+   flag (bool): Stores if the cell if marked with a flag.
+   colour (str): The colour of the tile.
+   number (int): The number of neighbouring bombs.
+   x (int): x coordinate ID used for drawing reletive.
+   y (int): y coordinate ID used for drawing reletive.
+   rec (Rectangle): Canvas Rectangle used in drawing.
+   text (Text): Canvas Text used in drawing number of neighbouring bombs.\end{DoxyVerb}
+ 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_minesweeper_1_1_cell_a90721693b3d271396e733f3ca07047bb}\label{class_minesweeper_1_1_cell_a90721693b3d271396e733f3ca07047bb}} 
+\index{Minesweeper\+::\+Cell@{Minesweeper\+::\+Cell}!\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}!Minesweeper\+::\+Cell@{Minesweeper\+::\+Cell}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+init\+\_\+\+\_\+()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def Minesweeper.\+Cell.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{canv,  }\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Cell Setup call.
+
+The default setup is that there is no bomb, the cell is covered and there
+is no flag. Also the colour is default white and x, y coordinates are set.
+The drawing objects are also created at this point.
+
+Args:
+    canv (Canvas): The canvas the cell should be drawn on.
+    x (int): x coordinate.
+    y (int): y coordinate.\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Minesweeper.\+py\end{DoxyCompactItemize}

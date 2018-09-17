@@ -29,6 +29,8 @@ class App(tk.Tk):
 		self.show_frame("MenuScreen")
 
 	def show_frame(self, page_name):
+		if page_name == "Highscores":
+			self.frames[page_name].load_highscores()
 		frame = self.frames[page_name]
 		frame.tkraise()
 
@@ -52,10 +54,15 @@ class Highscores(tk.Frame):
 		label = tk.Label(self, text="High Scores", font=controller.title_font)
 		label.pack(side="top", fill="x", pady=10)
 		button1 = tk.Button(self, text="Go Home", command=lambda: controller.show_frame("MenuScreen"))
+		button1.pack()
+		self.listbox = tk.Listbox(self)
+		self.listbox.pack()
+
+	def load_highscores(self):
+		self.listbox.delete(0, tk.END)
 		c = self.database.cursor()
 		for b in c.execute('SELECT * FROM scores'):
-			Name = tk.Label(self, text="High Scores", font=controller.title_font)
-			label.pack(side="top", fill="x", pady=10)
+			self.listbox.insert(tk.END, b)
 
 
 class Game(tk.Frame):
@@ -69,8 +76,11 @@ class Game(tk.Frame):
 		button2 = tk.Button(self, text="Start Normal", command=lambda: self.run_normal())
 		button3 = tk.Button(self, text="Start Hex", command=lambda: self.run_hex())
 		self.x_entry = tk.Entry(self)
+		self.x_entry.insert(tk.END, "30")
 		self.y_entry = tk.Entry(self)
+		self.y_entry.insert(tk.END, "30")
 		self.bombs_entry = tk.Entry(self)
+		self.bombs_entry.insert(tk.END, "10")
 		self.x_entry.pack()
 		self.y_entry.pack()
 		self.bombs_entry.pack()

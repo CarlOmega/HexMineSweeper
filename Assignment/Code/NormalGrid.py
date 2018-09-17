@@ -163,7 +163,7 @@ class Board:
 			if name is not None:
 				print("Storing score of: ", score, "By: ", name)
 				c = self.database.cursor()
-				c.execute("INSERT INTO scores VALUES (?, ?, ?, ?, ?, ?, ?)", ("normal", 1, name, self.size_x, self.size_y, self.bombs, score))
+				c.execute("INSERT INTO scores VALUES (?, ?, ?, ?, ?, ?, ?)", ("normal", 1, name, self.size_x, self.size_y, len(self.bombs), score))
 				self.database.commit()
 
 

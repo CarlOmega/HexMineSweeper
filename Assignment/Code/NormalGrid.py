@@ -72,6 +72,7 @@ class Board:
 		self.flag_count = 0
 
 		self.revealed = 0
+		# timer setup
 		self.time = ((size_x*size_y)//100)*bombs
 		self.timer = tk.Label(root, text="")
 		self.timer.pack()

@@ -55,7 +55,7 @@ class Highscores(tk.Frame):
 		label.pack(side="top", fill="x", pady=10)
 		button1 = tk.Button(self, text="Go Home", command=lambda: controller.show_frame("MenuScreen"))
 		button1.pack()
-		self.listbox = tk.Listbox(self)
+		self.listbox = tk.Listbox(self, width=100)
 		self.listbox.pack()
 
 	def load_highscores(self):

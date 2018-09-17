@@ -34,6 +34,9 @@ class App(tk.Tk):
 		frame = self.frames[page_name]
 		frame.tkraise()
 
+	def quit(self):
+		exit()
+
 class MenuScreen(tk.Frame):
 	def __init__(self, parent, controller, database):
 		tk.Frame.__init__(self, parent)
@@ -45,6 +48,8 @@ class MenuScreen(tk.Frame):
 		button1.pack()
 		button2 = tk.Button(self, text="High Scores", command=lambda: controller.show_frame("Highscores"))
 		button2.pack()
+		button3 = tk.Button(self, text="Quit", command=lambda: controller.quit())
+		button3.pack()
 
 class Highscores(tk.Frame):
 	def __init__(self, parent, controller, database):

@@ -4,6 +4,7 @@ import random
 import sys
 import NormalGrid as normal
 import HexGrid as hex
+import sqlite3
 sys.setrecursionlimit(15000)
 
 class App(tk.Tk):
@@ -11,15 +12,17 @@ class App(tk.Tk):
 		tk.Tk.__init__(self, *args, **kwargs)
 		self.title_font = tkfont.Font(family='Helvetica', size=18, weight="bold", slant="italic")
 
+		self.database = sqlite3.connect('highscores.db')
+
 		container = tk.Frame(self)
 		container.pack(side="top", fill="both", expand=True)
 		container.grid_rowconfigure(0, weight=1)
 		container.grid_columnconfigure(0, weight=1)
 
 		self.frames = {}
-		for F in (MenuScreen, Game):
+		for F in (MenuScreen, Game, Highscores):
 			page_name = F.__name__
-			frame = F(parent=container, controller=self)
+			frame = F(parent=container, controller=self, database=self.database)
 			self.frames[page_name] = frame
 			frame.grid(row=0, column=0, sticky="nsew")
 
@@ -30,19 +33,36 @@ class App(tk.Tk):
 		frame.tkraise()
 
 class MenuScreen(tk.Frame):
-	def __init__(self, parent, controller):
+	def __init__(self, parent, controller, database):
 		tk.Frame.__init__(self, parent)
 		self.controller = controller
+		self.database = database
 		label = tk.Label(self, text="Menu", font=controller.title_font)
 		label.pack(side="top", fill="x", pady=10)
-		button1 = tk.Button(self, text="Go to Page One", command=lambda: controller.show_frame("Game"))
+		button1 = tk.Button(self, text="Play", command=lambda: controller.show_frame("Game"))
 		button1.pack()
+		button2 = tk.Button(self, text="High Scores", command=lambda: controller.show_frame("Highscores"))
+		button2.pack()
 
-class Game(tk.Frame):
-	def __init__(self, parent, controller):
+class Highscores(tk.Frame):
+	def __init__(self, parent, controller, database):
 		tk.Frame.__init__(self, parent)
 		self.controller = controller
+		self.database = database
+		label = tk.Label(self, text="High Scores", font=controller.title_font)
+		label.pack(side="top", fill="x", pady=10)
+		button1 = tk.Button(self, text="Go Home", command=lambda: controller.show_frame("MenuScreen"))
+		c = self.database.cursor()
+		for b in c.execute('SELECT * FROM scores'):
+			Name = tk.Label(self, text="High Scores", font=controller.title_font)
+			label.pack(side="top", fill="x", pady=10)
 
+
+class Game(tk.Frame):
+	def __init__(self, parent, controller, database):
+		tk.Frame.__init__(self, parent)
+		self.controller = controller
+		self.database = database
 		label = tk.Label(self, text="Game", font=controller.title_font)
 		label.pack(side="top", fill="x", pady=10)
 		button1 = tk.Button(self, text="Go Home", command=lambda: controller.show_frame("MenuScreen"))
@@ -63,17 +83,18 @@ class Game(tk.Frame):
 		x = int(self.x_entry.get())
 		y = int(self.y_entry.get())
 		bombs = int(self.bombs_entry.get())
-		self.board = normal.Board(window, x, y, bombs)
+		self.board = normal.Board(window, x, y, bombs, self.database)
 
 	def run_hex(self):
 		window = tk.Toplevel(self)
 		x = int(self.x_entry.get())
 		y = int(self.y_entry.get())
 		bombs = int(self.bombs_entry.get())
-		self.board = hex.Board(window, x, y, bombs)
+		self.board = hex.Board(window, x, y, bombs, self.database)
 
 
 if __name__ == "__main__":
+
 	app = App()
 	app.geometry("500x500")
 	app.mainloop()

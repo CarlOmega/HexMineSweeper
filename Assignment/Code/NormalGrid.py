@@ -2,6 +2,8 @@ import tkinter as tk
 from tkinter import simpledialog
 import time
 import random
+import sqlite3
+
 class Cell:
 	"""Cell stores the relevant information about each cell tile.
 
@@ -53,7 +55,7 @@ class Board:
 	   bombs ((int, int)[]): x and y coordinates of the bombs locations.
 
    """
-	def __init__(self, root, size_x, size_y, bombs):
+	def __init__(self, root, size_x, size_y, bombs, database):
 		"""Board setup.
 
         This setup just creates the board then sets random cells to contain bombs.
@@ -71,6 +73,7 @@ class Board:
 		self.size_y = size_y
 		self.flag_count = 0
 
+		self.database = database
 		self.revealed = 0
 		# timer setup
 		self.time = ((size_x*size_y)//100)*bombs
@@ -159,6 +162,9 @@ class Board:
 			name = simpledialog.askstring("Input", "What is your name?", parent=self.window)
 			if name is not None:
 				print("Storing score of: ", score, "By: ", name)
+				c = self.database.cursor()
+				c.execute("INSERT INTO scores VALUES (?, ?, ?, ?, ?, ?, ?)", ("normal", 1, name, self.size_x, self.size_y, self.bombs, score))
+				self.database.commit()
 
 
 	def place_bombs(self, bombs):

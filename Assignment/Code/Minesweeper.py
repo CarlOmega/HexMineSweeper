@@ -44,12 +44,12 @@ class MenuScreen(tk.Frame):
 		self.database = database
 		label = tk.Label(self, text="Menu", font=controller.title_font)
 		label.pack(side="top", fill="x", pady=10)
-		button1 = tk.Button(self, text="Play", command=lambda: controller.show_frame("Game"))
-		button1.pack()
-		button2 = tk.Button(self, text="High Scores", command=lambda: controller.show_frame("Highscores"))
-		button2.pack()
-		button3 = tk.Button(self, text="Quit", command=lambda: controller.quit())
-		button3.pack()
+		play_button = tk.Button(self, text="Play", command=lambda: controller.show_frame("Game"))
+		play_button.pack()
+		highscores_button = tk.Button(self, text="High Scores", command=lambda: controller.show_frame("Highscores"))
+		highscores_button.pack()
+		quit_button = tk.Button(self, text="Quit", command=lambda: controller.quit())
+		quit_button.pack()
 
 class Highscores(tk.Frame):
 	def __init__(self, parent, controller, database):
@@ -58,8 +58,8 @@ class Highscores(tk.Frame):
 		self.database = database
 		label = tk.Label(self, text="High Scores", font=controller.title_font)
 		label.pack(side="top", fill="x", pady=10)
-		button1 = tk.Button(self, text="Go Home", command=lambda: controller.show_frame("MenuScreen"))
-		button1.pack()
+		home_button = tk.Button(self, text="Go Home", command=lambda: controller.show_frame("MenuScreen"))
+		home_button.pack()
 		self.listbox = tk.Listbox(self, width=100)
 		self.listbox.pack()
 
@@ -77,9 +77,9 @@ class Game(tk.Frame):
 		self.database = database
 		label = tk.Label(self, text="Game", font=controller.title_font)
 		label.pack(side="top", fill="x", pady=10)
-		button1 = tk.Button(self, text="Go Home", command=lambda: controller.show_frame("MenuScreen"))
-		button2 = tk.Button(self, text="Start Normal", command=lambda: self.run_normal())
-		button3 = tk.Button(self, text="Start Hex", command=lambda: self.run_hex())
+		home_button = tk.Button(self, text="Go Home", command=lambda: controller.show_frame("MenuScreen"))
+		normal_button = tk.Button(self, text="Start Normal", command=lambda: self.run_normal())
+		hex_button = tk.Button(self, text="Start Hex", command=lambda: self.run_hex())
 		self.x_entry = tk.Entry(self)
 		self.x_entry.insert(tk.END, "30")
 		self.y_entry = tk.Entry(self)
@@ -89,9 +89,9 @@ class Game(tk.Frame):
 		self.x_entry.pack()
 		self.y_entry.pack()
 		self.bombs_entry.pack()
-		button1.pack()
-		button2.pack()
-		button3.pack()
+		home_button.pack()
+		normal_button.pack()
+		hex_button.pack()
 
 	def run_normal(self):
 		window = tk.Toplevel(self)
@@ -109,7 +109,6 @@ class Game(tk.Frame):
 
 
 if __name__ == "__main__":
-
 	app = App()
 	app.geometry("500x500")
 	app.mainloop()

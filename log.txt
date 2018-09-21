@@ -1,0 +1,77 @@
+[33mcommit 688b145a81f4711ee90df6062f136b39d775aa4b[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Carl Humphries <carl.w.humphries@gmail.com>
+Date:   Tue Sep 18 19:34:04 2018 +1000
+
+    slight changes and more documents added
+
+[33mcommit dc63e3d795d7a4aa1a29fa1619cb28f5acad9e7d[m
+Author: Carl Humphries <carl.w.humphries@gmail.com>
+Date:   Mon Sep 17 20:13:20 2018 +1000
+
+    draft of progress report about half way done, also some updates to database
+
+[33mcommit b9eb0da16af152aafe5d5246e405564f57641435[m
+Author: Carl Humphries <carl.w.humphries@gmail.com>
+Date:   Mon Sep 17 16:58:33 2018 +1000
+
+    Defining how the pages are setup
+
+[33mcommit ab6bbf0f6a5c29911dcbef4f7e564ff8f7c2e924[m
+Author: Carl Humphries <carl.w.humphries@gmail.com>
+Date:   Mon Sep 17 16:34:01 2018 +1000
+
+    Added quit on main menu
+
+[33mcommit 168545dd31fa269b1edc0e688f17a09f7ec17e55[m
+Author: Carl Humphries <carl.w.humphries@gmail.com>
+Date:   Mon Sep 17 16:33:26 2018 +1000
+
+    fixed scores not showing up hiding the score
+
+[33mcommit 3d87ed0f43857a16baf1184759f477efc38a3745[m
+Author: Carl Humphries <carl.w.humphries@gmail.com>
+Date:   Mon Sep 17 16:29:00 2018 +1000
+
+    added highscore page to view highscores
+
+[33mcommit 06126373f9136e66c6267e82931ceadfb18f59e7[m
+Author: Carl Humphries <carl.w.humphries@gmail.com>
+Date:   Mon Sep 17 16:16:39 2018 +1000
+
+    Added basic databse structure for highscores not fully implemented yet opr tested
+
+[33mcommit e5d20248b82939b2dcdb6bff64780a3755392168[m
+Author: Carl Humphries <carl.w.humphries@gmail.com>
+Date:   Mon Sep 17 15:53:32 2018 +1000
+
+    Added timer to use as score it is defined as x by y divide 100 times bombs
+
+[33mcommit ea33f8f982d85c5fa7360e2a2a2857cf0670b166[m
+Author: Carl Humphries <carl.w.humphries@gmail.com>
+Date:   Mon Sep 17 14:58:54 2018 +1000
+
+    added documentation to git repo from milestone 1 lost progress on work
+
+[33mcommit d10d98d1c52f26e6be1a737136ef490f5b465f3a[m
+Author: Carl Humphries <carl.w.humphries@gmail.com>
+Date:   Mon Sep 17 14:57:20 2018 +1000
+
+    Added basic menu to launch different versions of the game
+
+[33mcommit 97d65339df0e21260344987c0e05fc17728b8b18[m
+Author: Carl Humphries <carl.w.humphries@gmail.com>
+Date:   Mon Sep 17 14:56:13 2018 +1000
+
+    refactored code to have hex and normal minesweeper in separate files
+
+[33mcommit b39da7cbb259eec5c6d23eea59e6a70ca59264cb[m
+Author: Carl Name <carl.w.humphries@gmail.com>
+Date:   Tue Jul 31 18:47:31 2018 +1000
+
+    Rough prototype for hex and square based minesweeper
+
+[33mcommit b81c831372ea4fc9e84efca010ffd51a4c63e632[m
+Author: Carl Humphries <carl.w.humphries@gmail.com>
+Date:   Tue Jul 31 18:45:38 2018 +1000
+
+    Initial commit

@@ -39,8 +39,8 @@ class Cell:
 		self.number = 0
 		self.x = x
 		self.y = y
-		self.rec = canv.create_rectangle(24*x + 4, 24*y + 4, 24*x + 22, 24*y + 22, outline="#000", fill="#eee", tags="rec")
-		self.text = canv.create_text(24*x + 13, 24*y + 13, fill="white",font="Times 20 italic bold", text="", tags="rec")
+		self.rec = canv.create_rectangle(24*x + 4, 24*y + 4, 24*x + 22, 24*y + 22, outline="#6C7A89", fill="#ABB7B7", tags="rec")
+		self.text = canv.create_text(24*x + 13, 24*y + 13, fill="white", font="Times 20 italic bold", text="", tags="rec")
 
 
 class Board:
@@ -55,7 +55,7 @@ class Board:
 	   bombs ((int, int)[]): x and y coordinates of the bombs locations.
 
    """
-	def __init__(self, root, size_x, size_y, bombs, database):
+	def __init__(self, root, size_x, size_y, bombs, time, database):
 		"""Board setup.
 
         This setup just creates the board then sets random cells to contain bombs.
@@ -68,7 +68,8 @@ class Board:
 
         """
 		self.window = root
-		self.canv = tk.Canvas(root, width=24*size_x, height=24*size_y)
+		self.window.configure(background='#BDC3C7')
+		self.canv = tk.Canvas(root, width=24*size_x, height=24*size_y, background='#BDC3C7', highlightbackground="green", highlightcolor="green")
 		self.size_x = size_x
 		self.size_y = size_y
 		self.flag_count = 0
@@ -76,18 +77,21 @@ class Board:
 		self.database = database
 		self.revealed = 0
 		# timer setup
-		self.time = ((size_x*size_y)//100)*bombs
-		self.timer = tk.Label(root, text="")
-		self.timer.pack()
-		quitButton = tk.Button(root, text="Quit", command=lambda: self.quit())
-		quitButton.pack()
+		self.time = time
+		self.timer = tk.Label(root, text="", background='#BDC3C7')
+		quitButton = tk.Button(root, text="Quit", background='#BDC3C7', command=lambda: self.quit())
+		self.bomb_count = tk.Label(root, text="", background='#BDC3C7')
+		quitButton.grid(row=0, column=1)
+		self.timer.grid(row=0, column=2)
+		self.bomb_count.grid(row=0, column=0)
 
 		self.board = [[Cell(self.canv, x, y) for y in range(size_y)] for x in range(size_x)]
 		self.canv.tag_bind('rec', '<ButtonPress-1>', self.onObjectLeftClick)
 		self.canv.tag_bind('rec', '<ButtonPress-3>', self.onObjectRightClick)
-		self.canv.pack()
+		self.canv.grid(row=1, columnspan=3)
 		self.bombs = list()
 		self.place_bombs(bombs)
+		self.bomb_count.configure(text="Bombs: " + str(len(self.bombs)))
 		self.update_clock()
 
 	def quit(self):

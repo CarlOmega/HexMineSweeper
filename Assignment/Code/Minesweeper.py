@@ -4,6 +4,7 @@ import random
 import sys
 import NormalGrid as normal
 import HexGrid as hex
+import ColourGrid as colour
 import sqlite3
 sys.setrecursionlimit(15000)
 
@@ -86,6 +87,7 @@ class Game(tk.Frame):
 		home_button = tk.Button(self, text="Go Home", command=lambda: controller.show_frame("MenuScreen"), height=2, width=40, background="#6C7A89")
 		normal_button = tk.Button(self, text="Start Normal", command=lambda: self.run_normal(), height=2, width=40, background="#6C7A89")
 		hex_button = tk.Button(self, text="Start Hex", command=lambda: self.run_hex(), height=2, width=40, background="#6C7A89")
+		colour_button = tk.Button(self, text="Start Colour", command=lambda: self.run_colour(), height=2, width=40, background="#6C7A89")
 
 		self.level_choice = tk.StringVar(self)
 		self.levels = ['Easy', 'Medium', 'Hard', 'Super Hard']
@@ -101,6 +103,7 @@ class Game(tk.Frame):
 		self.level_selector.pack()
 		normal_button.pack()
 		hex_button.pack()
+		colour_button.pack()
 
 	def run_normal(self):
 		window = tk.Toplevel(self)
@@ -126,7 +129,7 @@ class Game(tk.Frame):
 			y = 30
 			bombs = 200
 			time = 600
-		self.normal_board = normal.Board(window, x, y, bombs, time, self.database)
+		self.normal_board = normal.Board(window, x, y, bombs, time, option, self.database)
 
 	def run_hex(self):
 		window = tk.Toplevel(self)
@@ -152,7 +155,33 @@ class Game(tk.Frame):
 			y = 30
 			bombs = 200
 			time = 600
-		self.hex_board = hex.Board(window, x, y, bombs, time, self.database)
+		self.hex_board = hex.Board(window, x, y, bombs, time, option, self.database)
+
+	def run_colour(self):
+		window = tk.Toplevel(self)
+		window.winfo_toplevel().title("Normal Minesweeper")
+		option = self.level_choice.get()
+		if (option == 'Easy'):
+			x = 10
+			y = 10
+			bombs = 15
+			time = 120
+		elif (option == 'Medium'):
+			x = 20
+			y = 20
+			bombs = 30
+			time = 300
+		elif (option == 'Hard'):
+			x = 30
+			y = 30
+			bombs = 100
+			time = 600
+		elif (option == 'Super Hard'):
+			x = 30
+			y = 30
+			bombs = 200
+			time = 600
+		self.colour_board = colour.Board(window, x, y, bombs, time, option, self.database)
 
 
 if __name__ == "__main__":

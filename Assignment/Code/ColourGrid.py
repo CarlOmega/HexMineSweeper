@@ -9,6 +9,7 @@ class Cell:
 	def __init__(self, canv, x, y):
 		self.bomb = False
 		self.covered = True
+		self.colour = ''
 		self.flag = False
 		self.colour = "white"
 		self.number = 0
@@ -35,13 +36,14 @@ class Cell:
 
 
 class Board:
-	def __init__(self, root, size_x, size_y, bombs, time, database):
+	def __init__(self, root, size_x, size_y, bombs, time, mode, database):
 		self.window = root
 		self.window.configure(background='#BDC3C7')
 		self.canv = tk.Canvas(root, width=25*size_x, height=25*size_y, background='#BDC3C7', highlightbackground="green", highlightcolor="green")
 		self.size_x = size_x
 		self.size_y = size_y
 		self.flag_count = 0
+		self.mode = mode
 
 		self.database = database
 		self.revealed = 0
@@ -123,7 +125,7 @@ class Board:
 			if name is not None:
 				print("Storing score of: ", score, "By: ", name)
 				c = self.database.cursor()
-				c.execute("INSERT INTO scores VALUES (?, ?, ?, ?, ?, ?, ?)", ("hex", 1, name, self.size_x, self.size_y, len(self.bombs), score))
+				c.execute("INSERT INTO scores VALUES (?, ?, ?, ?, ?, ?, ?)", ("hex", self.mode, name, self.size_x, self.size_y, len(self.bombs), score))
 				self.database.commit()
 
 	def place_bombs(self, bombs):
@@ -152,48 +154,110 @@ class Board:
 			self.board[x][y].flag = False
 			self.flag_count -= 1
 			self.canv.itemconfig(self.board[x][y].rec, fill='#ABB7B7')
-			self.canv.itemconfig(self.board[x][y].text, text='')
 		else:
 			self.board[x][y].flag = True
 			self.flag_count += 1
 			self.canv.itemconfig(self.board[x][y].rec, fill='#26A65B')
-			self.canv.itemconfig(self.board[x][y].text, text='F', fill='#264348')
 
 
 	def reveal(self, x, y):
 		if self.board[x][y].flag:
 			return
 		if self.board[x][y].bomb:
-			self.game_over("lose")
+			self.board[x][y].colour = '#9B59B6'
+			self.canv.itemconfig(self.board[x][y].rec, fill='#9B59B6')
+			if x%2 == 0:
+				for i,j in [(-1, -1), (-1, 0), (0, -1), (0, 1), (1, -1), (1, 0)]:
+					if (0 <= x+i < self.size_x and 0 <= y+j < self.size_y):
+						if self.board[x+i][y+j].colour == self.board[x][y].colour:
+							self.game_over("lose")
+							return
+			else:
+				for i,j in [(-1, 0), (-1, 1), (0, -1), (0, 1), (1, 0), (1, 1)]:
+					if (0 <= x+i < self.size_x and 0 <= y+j < self.size_y):
+						if self.board[x+i][y+j].colour == self.board[x][y].colour:
+							self.game_over("lose")
+							return
 			return
 		else:
 			if self.board[x][y].covered:
 				self.board[x][y].covered = False
 				self.revealed += 1
 				if self.board[x][y].number == 0:
-					self.canv.itemconfig(self.board[x][y].rec, fill='white')
+					self.canv.itemconfig(self.board[x][y].rec, fill='#48929B')
+					self.board[x][y].colour = '#48929B'
 					if x%2 == 0:
 						for i,j in [(-1, -1), (-1, 0), (0, -1), (0, 1), (1, -1), (1, 0)]:
 							if (0 <= x+i < self.size_x and 0 <= y+j < self.size_y):
-								if self.board[x+i][y+j].covered:
-									self.reveal(x+i, y+j)
+								if self.board[x+i][y+j].colour == self.board[x][y].colour:
+									self.game_over("lose")
+									return
 					else:
 						for i,j in [(-1, 0), (-1, 1), (0, -1), (0, 1), (1, 0), (1, 1)]:
 							if (0 <= x+i < self.size_x and 0 <= y+j < self.size_y):
-								if self.board[x+i][y+j].covered:
-									self.reveal(x+i, y+j)
+								if self.board[x+i][y+j].colour == self.board[x][y].colour:
+									self.game_over("lose")
+									return
 				elif self.board[x][y].number == 1:
+					self.board[x][y].colour = '#89C4F4'
 					self.canv.itemconfig(self.board[x][y].rec, fill='#89C4F4')
-					self.canv.itemconfig(self.board[x][y].text, text=str(self.board[x][y].number), fill='black')
+					if x%2 == 0:
+						for i,j in [(-1, -1), (-1, 0), (0, -1), (0, 1), (1, -1), (1, 0)]:
+							if (0 <= x+i < self.size_x and 0 <= y+j < self.size_y):
+								if self.board[x+i][y+j].colour == self.board[x][y].colour:
+									self.game_over("lose")
+									return
+					else:
+						for i,j in [(-1, 0), (-1, 1), (0, -1), (0, 1), (1, 0), (1, 1)]:
+							if (0 <= x+i < self.size_x and 0 <= y+j < self.size_y):
+								if self.board[x+i][y+j].colour == self.board[x][y].colour:
+									self.game_over("lose")
+									return
 				elif self.board[x][y].number == 2:
+					self.board[x][y].colour = '#F4D03F'
 					self.canv.itemconfig(self.board[x][y].rec, fill='#F4D03F')
-					self.canv.itemconfig(self.board[x][y].text, text=str(self.board[x][y].number), fill='black')
+					if x%2 == 0:
+						for i,j in [(-1, -1), (-1, 0), (0, -1), (0, 1), (1, -1), (1, 0)]:
+							if (0 <= x+i < self.size_x and 0 <= y+j < self.size_y):
+								if self.board[x+i][y+j].colour == self.board[x][y].colour:
+									self.game_over("lose")
+									return
+					else:
+						for i,j in [(-1, 0), (-1, 1), (0, -1), (0, 1), (1, 0), (1, 1)]:
+							if (0 <= x+i < self.size_x and 0 <= y+j < self.size_y):
+								if self.board[x+i][y+j].colour == self.board[x][y].colour:
+									self.game_over("lose")
+									return
 				elif self.board[x][y].number == 3:
+					self.board[x][y].colour = '#CF3A24'
 					self.canv.itemconfig(self.board[x][y].rec, fill='#CF3A24')
-					self.canv.itemconfig(self.board[x][y].text, text=str(self.board[x][y].number), fill='black')
+					if x%2 == 0:
+						for i,j in [(-1, -1), (-1, 0), (0, -1), (0, 1), (1, -1), (1, 0)]:
+							if (0 <= x+i < self.size_x and 0 <= y+j < self.size_y):
+								if self.board[x+i][y+j].colour == self.board[x][y].colour:
+									self.game_over("lose")
+									return
+					else:
+						for i,j in [(-1, 0), (-1, 1), (0, -1), (0, 1), (1, 0), (1, 1)]:
+							if (0 <= x+i < self.size_x and 0 <= y+j < self.size_y):
+								if self.board[x+i][y+j].colour == self.board[x][y].colour:
+									self.game_over("lose")
+									return
 				elif self.board[x][y].number > 3:
+					self.board[x][y].colour = '#8F1D21'
 					self.canv.itemconfig(self.board[x][y].rec, fill='#8F1D21')
-					self.canv.itemconfig(self.board[x][y].text, text=str(self.board[x][y].number), fill='black')
+					if x%2 == 0:
+						for i,j in [(-1, -1), (-1, 0), (0, -1), (0, 1), (1, -1), (1, 0)]:
+							if (0 <= x+i < self.size_x and 0 <= y+j < self.size_y):
+								if self.board[x+i][y+j].colour == self.board[x][y].colour:
+									self.game_over("lose")
+									return
+					else:
+						for i,j in [(-1, 0), (-1, 1), (0, -1), (0, 1), (1, 0), (1, 1)]:
+							if (0 <= x+i < self.size_x and 0 <= y+j < self.size_y):
+								if self.board[x+i][y+j].colour == self.board[x][y].colour:
+									self.game_over("lose")
+									return
 			else:
 				return
 

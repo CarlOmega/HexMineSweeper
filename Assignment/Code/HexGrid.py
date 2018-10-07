@@ -35,13 +35,14 @@ class Cell:
 
 
 class Board:
-	def __init__(self, root, size_x, size_y, bombs, time, database):
+	def __init__(self, root, size_x, size_y, bombs, time, mode, database):
 		self.window = root
 		self.window.configure(background='#BDC3C7')
 		self.canv = tk.Canvas(root, width=25*size_x, height=25*size_y, background='#BDC3C7', highlightbackground="green", highlightcolor="green")
 		self.size_x = size_x
 		self.size_y = size_y
 		self.flag_count = 0
+		self.mode = mode
 
 		self.database = database
 		self.revealed = 0
@@ -123,7 +124,7 @@ class Board:
 			if name is not None:
 				print("Storing score of: ", score, "By: ", name)
 				c = self.database.cursor()
-				c.execute("INSERT INTO scores VALUES (?, ?, ?, ?, ?, ?, ?)", ("hex", 1, name, self.size_x, self.size_y, len(self.bombs), score))
+				c.execute("INSERT INTO scores VALUES (?, ?, ?, ?, ?, ?, ?)", ("hex", self.mode, name, self.size_x, self.size_y, len(self.bombs), score))
 				self.database.commit()
 
 	def place_bombs(self, bombs):

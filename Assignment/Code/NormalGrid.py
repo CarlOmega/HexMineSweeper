@@ -40,7 +40,7 @@ class Cell:
 		self.x = x
 		self.y = y
 		self.rec = canv.create_rectangle(24*x + 4, 24*y + 4, 24*x + 22, 24*y + 22, outline="#6C7A89", fill="#ABB7B7", tags="rec")
-		self.text = canv.create_text(24*x + 13, 24*y + 13, fill="white", font="Times 20 italic bold", text="", tags="rec")
+		self.text = canv.create_text(24*x + 13, 24*y + 13, fill="white", font="Times 15 bold", text="", tags="rec")
 
 
 class Board:
@@ -210,13 +210,13 @@ class Board:
 		if self.board[x][y].flag:
 			self.board[x][y].flag = False
 			self.flag_count -= 1
-			self.canv.itemconfig(self.board[x][y].rec, fill='#eee')
+			self.canv.itemconfig(self.board[x][y].rec, fill='#ABB7B7')
 			self.canv.itemconfig(self.board[x][y].text, text='')
 		else:
 			self.board[x][y].flag = True
 			self.flag_count += 1
-			self.canv.itemconfig(self.board[x][y].rec, fill='black')
-			self.canv.itemconfig(self.board[x][y].text, text='F', fill='white')
+			self.canv.itemconfig(self.board[x][y].rec, fill='#26A65B')
+			self.canv.itemconfig(self.board[x][y].text, text='F', fill='#264348')
 
 
 	def reveal(self, x, y):
@@ -249,16 +249,16 @@ class Board:
 								if self.board[x+i][y+j].covered:
 									self.reveal(x+i, y+j)
 				elif self.board[x][y].number == 1:
-					self.canv.itemconfig(self.board[x][y].rec, fill='blue')
+					self.canv.itemconfig(self.board[x][y].rec, fill='#89C4F4')
 					self.canv.itemconfig(self.board[x][y].text, text=str(self.board[x][y].number), fill='black')
 				elif self.board[x][y].number == 2:
-					self.canv.itemconfig(self.board[x][y].rec, fill='yellow')
+					self.canv.itemconfig(self.board[x][y].rec, fill='#F4D03F')
 					self.canv.itemconfig(self.board[x][y].text, text=str(self.board[x][y].number), fill='black')
 				elif self.board[x][y].number == 3:
-					self.canv.itemconfig(self.board[x][y].rec, fill='red')
+					self.canv.itemconfig(self.board[x][y].rec, fill='#CF3A24')
 					self.canv.itemconfig(self.board[x][y].text, text=str(self.board[x][y].number), fill='black')
 				elif self.board[x][y].number > 3:
-					self.canv.itemconfig(self.board[x][y].rec, fill='darkred')
+					self.canv.itemconfig(self.board[x][y].rec, fill='#8F1D21')
 					self.canv.itemconfig(self.board[x][y].text, text=str(self.board[x][y].number), fill='black')
 			else:
 				return

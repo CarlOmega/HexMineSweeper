@@ -58,8 +58,8 @@ class Highscores(tk.Frame):
 		self.database = database
 		label = tk.Label(self, text="High Scores", font=controller.title_font, background='#BDC3C7')
 		home_button = tk.Button(self, text="Go Home", command=lambda: controller.show_frame("MenuScreen"), height=2, width=40, background="#6C7A89")
-
-		self.listbox = tk.Listbox(self, width=100)
+		highscorefont = tkfont.Font(family='Consolas', size=10, weight="bold")
+		self.listbox = tk.Listbox(self, width=100, font=highscorefont, background="#6C7A89")
 		label.pack(side="top", fill="x", pady=10)
 		home_button.pack()
 
@@ -68,8 +68,11 @@ class Highscores(tk.Frame):
 	def load_highscores(self):
 		self.listbox.delete(0, tk.END)
 		c = self.database.cursor()
+		entry = "|{:10}|{:10}|{:10}|{:10}|".format('Game Type', 'Level', 'Name', 'Score')
+		self.listbox.insert(tk.END, entry)
 		for b in c.execute('SELECT * FROM scores'):
-			self.listbox.insert(tk.END, b)
+			entry = "|{:<10}|{:<10}|{:<10}|{:<10}|".format(b[0], b[1], b[2], b[6])
+			self.listbox.insert(tk.END, entry)
 
 
 class Game(tk.Frame):

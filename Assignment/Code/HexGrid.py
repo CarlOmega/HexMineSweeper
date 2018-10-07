@@ -16,9 +16,9 @@ class Cell:
 		self.y = y
 		self.rec = canv.create_polygon(self.getPoints(), outline="#6C7A89", fill="#ABB7B7", tags="rec")
 		if self.x%2 == 0:
-			self.text = canv.create_text(24*self.x + 29, 24*self.y + 17, fill="white",font="Times 15 italic bold", text="", tags="rec")
+			self.text = canv.create_text(24*self.x + 20, 24*self.y + 17, fill="white",font="Times 15 italic bold", text="", tags="rec")
 		else:
-			self.text = canv.create_text(24*self.x + 29, 24*self.y + 29, fill="white",font="Times 15 italic bold", text="", tags="rec")
+			self.text = canv.create_text(24*self.x + 20, 24*self.y + 29, fill="white",font="Times 15 italic bold", text="", tags="rec")
 
 	def getPoints(self):
 		points = list()
@@ -26,11 +26,11 @@ class Cell:
 			angle_deg = 60 * i
 			angle_rad = math.pi / 180 * angle_deg
 			if self.x%2 == 0:
-				points.append(24*self.x + 12 * math.cos(angle_rad) + 2 * 12 + 5)
+				points.append(24*self.x + 12 * math.cos(angle_rad) + 20)
 				points.append(24*self.y + 12 * math.sin(angle_rad) + 17)
 			else:
-				points.append(24*self.x + 12 * math.cos(angle_rad) + 2 * 12 + 5)
-				points.append(24*self.y + 12 * math.sin(angle_rad) + 2 * 12 + 5)
+				points.append(24*self.x + 12 * math.cos(angle_rad) + 20)
+				points.append(24*self.y + 12 * math.sin(angle_rad) + 29)
 		return points
 
 

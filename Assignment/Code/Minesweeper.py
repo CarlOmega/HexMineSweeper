@@ -130,8 +130,8 @@ class Game(tk.Frame):
 		window.winfo_toplevel().title("Normal Minesweeper")
 		option = self.level_choice.get()
 		if (option == 'Easy'):
-			x = 10
-			y = 10
+			x = 15
+			y = 15
 			bombs = 8
 			time = 120
 		elif (option == 'Medium'):

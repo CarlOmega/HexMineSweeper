@@ -132,7 +132,7 @@ class Game(tk.Frame):
 		if (option == 'Easy'):
 			x = 15
 			y = 15
-			bombs = 8
+			bombs = 10
 			time = 120
 		elif (option == 'Medium'):
 			x = 20
